@@ -167,3 +167,14 @@ export async function addProjectToUser(userId, projectId) {
     .collection("users")
     .findOne({ _id: new ObjectId(userId) });
 }
+
+export async function getUser(userId) {
+  const clientmongo = await getConnection();
+
+  const user = await clientmongo
+    .db("ipit")
+    .collection("users")
+    .findOne({ _id: new ObjectId(userId) });
+
+  return user;
+}

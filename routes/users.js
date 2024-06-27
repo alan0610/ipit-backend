@@ -7,6 +7,7 @@ import {
   updateUserBalance,
   addProjectToUser,
   getProjectCost,
+  getUser,
 } from "../data/user.js";
 
 const usersRouter = express.Router();
@@ -62,6 +63,10 @@ usersRouter.put("/balance", async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
+});
+
+usersRouter.get("/:id", async (req, res) => {
+  res.json(await getUser(req.params.id));
 });
 
 export default usersRouter;
